@@ -15,8 +15,12 @@ ARG USER_GID=$USER_UID
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && bash /tmp/library-scripts/common-debian.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_GID}" "${UPGRADE_PACKAGES}" "true" "true" \ 
     && apt-get install -y graphviz \
-                          build-essential \
-    && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+                          build-essential 
+
+# Install kubectl and helm
+RUN bash /tmp/library-scripts/kubectl-helm-debian.sh
+
+RUN apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # [Option] Install Azure CLI
 ARG INSTALL_AZURE_CLI="true"
