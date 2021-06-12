@@ -1,6 +1,9 @@
 # Local .terraform directories
 **/.terraform/*
 
+# Auto vars may contain secrets
+**/*.auto.tfvars
+
 # .tfstate files
 *.tfstate
 *.tfstate.*

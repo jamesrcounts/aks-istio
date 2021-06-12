@@ -9,15 +9,14 @@ init:
 clean:
 	terraform destroy -auto-approve
 
-connect:
-	terraform init -get=false
-	terraform -v
-	terraform providers
+config:
+	@echo 'aks_cluster_name="aks-becoming-chicken-dmz"' > terraform.auto.tfvars
+	@echo 'resource_group_name="rg-becoming-chicken"' >> terraform.auto.tfvars
 	
 validate:
 	terraform validate
 
-apply: init fmt connect validate
+apply: config init fmt validate
 	terraform apply
 
 login:
