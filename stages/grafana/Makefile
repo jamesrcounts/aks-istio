@@ -18,6 +18,7 @@ validate:
 
 apply: config init fmt validate
 	terraform apply
+	bash ./scripts/import-all-istio-dashboards.sh
 
 login:
 	az login
