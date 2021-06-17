@@ -1,10 +1,8 @@
-resource "helm_release" "grafana" {
-  name      = "grafana"
-  chart     = "../../charts/grafana-6.12.1"
-  namespace = kubernetes_namespace.istio_system.metadata.0.name
+data "kustomization" "grafana" {
+  path = "./grafana"
+}
 
-  set {
-    name  = "service.type"
-    value = "LoadBalancer"
-  }
+resource "kustomization_resource" "grafana" {
+  for_each = data.kustomization.grafana.ids
+  manifest = data.kustomization.grafana.manifests[each.value]
 }
