@@ -1,15 +1,8 @@
-resource "helm_release" "prometheus" {
-  name      = "prometheus"
-  chart     = "../../charts/prometheus-14.1.1"
-  namespace = kubernetes_namespace.istio_system.metadata.0.name
+data "kustomization" "prometheus" {
+  path = "./prometheus"
+}
 
-  set {
-    name  = "server.service.servicePort"
-    value = 9090
-  }
-
-  set {
-    name  = "server.fullnameOverride"
-    value = "prometheus"
-  }
+resource "kustomization_resource" "prometheus" {
+  for_each = data.kustomization.prometheus.ids
+  manifest = data.kustomization.prometheus.manifests[each.value]
 }
