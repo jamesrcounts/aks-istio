@@ -1,10 +1,8 @@
-resource "helm_release" "kiali" {
-  name      = "kiali-server"
-  chart     = "../../charts/kiali-server-1.35.0"
-  namespace = kubernetes_namespace.istio_system.metadata.0.name
+data "kustomization" "kiali" {
+  path = "./kiali"
+}
 
-  set {
-    name  = "auth.strategy"
-    value = "anonymous"
-  }
+resource "kustomization_resource" "kiali" {
+  for_each = data.kustomization.kiali.ids
+  manifest = data.kustomization.kiali.manifests[each.value]
 }
