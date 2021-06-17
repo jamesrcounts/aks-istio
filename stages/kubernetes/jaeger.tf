@@ -1,5 +1,8 @@
-resource "helm_release" "jaeger" {
-  name      = "jaeger"
-  chart     = "../../charts/jaeger-0.46.0"
-  namespace = kubernetes_namespace.istio_system.metadata.0.name
+data "kustomization" "jaeger" {
+  path = "./jaeger"
+}
+
+resource "kustomization_resource" "jaeger" {
+  for_each = data.kustomization.jaeger.ids
+  manifest = data.kustomization.jaeger.manifests[each.value]
 }
