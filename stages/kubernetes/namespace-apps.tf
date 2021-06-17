@@ -1,6 +1,10 @@
 resource "kubernetes_namespace" "apps" {
   metadata {
     name = "apps"
+
+    labels = {
+      istio-injection = "enabled"
+    }
   }
 }
 
