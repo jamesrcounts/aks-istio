@@ -1,3 +1,3 @@
 resources:
 - bookinfo.yaml
-- bookinfo-ingress.yaml
+- bookinfo-gateway.yaml
