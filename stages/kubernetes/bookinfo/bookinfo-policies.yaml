@@ -1,0 +1,72 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: "productpage-viewer"
+  namespace: apps
+spec:
+  selector:
+    matchLabels:
+      app: productpage
+  action: ALLOW
+  rules:
+  - to:
+    - operation:
+        methods: ["GET"]
+  # opens GET from all sources to the productpage app
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: "details-viewer"
+  namespace: apps
+spec:
+  selector:
+    matchLabels:
+      app: details
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/apps/sa/bookinfo-productpage"]
+    to:
+    - operation:
+        methods: ["GET"]
+  # allows product page to GET details
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: "reviews-viewer"
+  namespace: apps
+spec:
+  selector:
+    matchLabels:
+      app: reviews
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/apps/sa/bookinfo-productpage"]
+    to:
+    - operation:
+        methods: ["GET"]
+# allows product page to GET reviews
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: "ratings-viewer"
+  namespace: apps
+spec:
+  selector:
+    matchLabels:
+      app: ratings
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/apps/sa/bookinfo-reviews"]
+    to:
+    - operation:
+        methods: ["GET"]
+# allows reviews to GET ratings

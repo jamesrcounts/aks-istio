@@ -1,3 +1,4 @@
 resources:
 - bookinfo.yaml
 - bookinfo-gateway.yaml
+- bookinfo-policies.yaml
