@@ -22,14 +22,15 @@
 		"TF_BACKEND_LOCATION": "${containerEnv:TF_BACKEND_LOCATION}",
 		"TF_BACKEND_STORAGE_ACCOUNT" : "${containerEnv:TF_BACKEND_STORAGE_ACCOUNT}",                
 		"TF_BACKEND_CONTAINER" : "${containerEnv:TF_BACKEND_CONTAINER}",
-		"TF_BACKEND_KEY" : "${containerEnv:TF_BACKEND_KEY}"
+		"TF_BACKEND_KEY" : "${containerEnv:TF_BACKEND_KEY}",
 
-		// Use 'TF_VAR' prefix to set input variables for terraform templates
-		// "TF_VAR_rg_name":  "${containerEnv:TF_VAR_RG_NAME}"
+		"AWS_ACCESS_KEY_ID":"${localEnv:AWS_ACCESS_KEY_ID}",
+		"AWS_SECRET_ACCESS_KEY":"${localEnv:AWS_SECRET_ACCESS_KEY}",
 	},
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
-		"terminal.integrated.shell.linux": "/bin/bash",
+		"terminal.integrated.defaultProfile.linux": "zsh",
+		"terminal.integrated.defaultProfile.osx": "zsh",
 		"terraform.languageServer": {
 			"enabled": true,
 			"args": []

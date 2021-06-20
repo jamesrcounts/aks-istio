@@ -49,8 +49,12 @@ RUN bash /tmp/library-scripts/terraform-debian.sh "${TERRAFORM_VERSION}" "${TFLI
 
 # Istioctl
 ARG ISTIO_VERSION=1.10.1
-RUN bash /tmp/library-scripts/istioctl-debian.sh \
-    && rm -rf /tmp/library-scripts
+RUN bash /tmp/library-scripts/istioctl-debian.sh 
+
+# CERTBOT
+COPY library-scripts/certbot.sh  /tmp/library-scripts/
+RUN bash /tmp/library-scripts/certbot.sh \
+    && rm -rf /var/lib/apt/lists/*
 
 # Some people have git config pointed at a different gpg location
 RUN ln -s /usr/bin/gpg /usr/local/bin/gpg
