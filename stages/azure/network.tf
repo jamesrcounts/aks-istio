@@ -7,6 +7,8 @@ module "vnet_dmz" {
 
   subnets = {
     "aks-subnet"                = [8, 240]
+    "aks-dmz-subnet"            = [8, 238]
+    "aks-svc-subnet"            = [8, 236]
     "applicationgateway-subnet" = [8, 2]
     "apim-subnet"               = [8, 4]
   }
