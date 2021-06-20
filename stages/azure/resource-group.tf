@@ -1,5 +1,5 @@
 data "azurerm_resource_group" "main" {
-  name = "rg-becoming-chicken"
+  name = var.resource_group_name
 }
 
 data "azurerm_resource_group" "backend" {

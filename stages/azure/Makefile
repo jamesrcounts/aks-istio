@@ -1,5 +1,7 @@
 default: apply
 
+instance_id := becoming-chicken
+
 fmt:
 	terraform fmt -recursive
 
@@ -13,11 +15,14 @@ connect:
 	terraform init -get=false
 	terraform -v
 	terraform providers
+
+config:
+	@echo 'resource_group_name="rg-$(instance_id)"' > terraform.auto.tfvars
 	
 validate:
 	terraform validate
 
-apply: init fmt connect validate
+apply: config init fmt connect validate
 	terraform apply
 
 login:
