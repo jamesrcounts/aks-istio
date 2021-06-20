@@ -3,7 +3,7 @@ module "aks_dmz" {
 
   environment             = "dmz"
   resource_group          = data.azurerm_resource_group.main
-  subnet                  = { id = module.vnet_dmz.subnets["aks-subnet"] } #TODO: use aks-dmz-subnet
+  subnet                  = { id = module.vnet_dmz.subnets["aks-dmz-subnet"] }
   log_analytics_workspace = data.azurerm_log_analytics_workspace.logs
 }
 

@@ -8,10 +8,8 @@ fmt:
 init:
 	terraform init --upgrade
 	
-clean: purge
+clean: 
 	terraform destroy -auto-approve
-
-purge: 
 	az rest --method delete --header "Accept=applicaiton/json" -u 'https://management.azure.com/subscriptions/bbb80ca8-cf8a-4d13-8fa4-6027d7e5b71d/providers/Microsoft.ApiManagement/locations/centralus/deletedservices/apim-$(instance_id)?api-version=2020-06-01-preview' 
 
 connect:
