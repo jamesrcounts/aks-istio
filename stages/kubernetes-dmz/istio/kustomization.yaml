@@ -1,4 +1,0 @@
-resources:
-- manifest.yaml
-- peer-authentication.yaml
-- authorization-policy-apps.yaml
