@@ -2,3 +2,6 @@ resources:
 - sleep.yaml
 - httpbin-serviceentry.yaml
 - google-serviceentry.yaml
+- cnn-serviceentry.yaml
+- cnn-gateway.yaml
+- cnn-virtualservice.yaml
