@@ -25,3 +25,14 @@ resource "kubernetes_cluster_role_binding" "view" {
     namespace = "apps"
   }
 }
+
+data "kustomization_build" "apps_istio_crs" {
+  path = "./apps-istio-crs"
+}
+
+resource "kustomization_resource" "apps_istio_crs" {
+  depends_on = [kubernetes_namespace.apps, module.istio]
+
+  for_each = data.kustomization_build.apps_istio_crs.ids
+  manifest = data.kustomization_build.apps_istio_crs.manifests[each.value]
+}
