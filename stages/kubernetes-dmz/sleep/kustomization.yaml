@@ -1,0 +1,4 @@
+resources:
+- sleep.yaml
+- httpbin-serviceentry.yaml
+- google-serviceentry.yaml
