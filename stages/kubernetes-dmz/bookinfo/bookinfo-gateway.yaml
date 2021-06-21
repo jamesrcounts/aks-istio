@@ -5,7 +5,7 @@ metadata:
   namespace: istio-system
 spec:
   selector:
-    istio: ingressgateway
+    istio: ingressgateway # use istio default controller
   servers:
   - port:
       number: 80
@@ -27,10 +27,17 @@ spec:
   http:
   - match:
     - uri:
-        prefix: /productpage
+        exact: /productpage
+    - uri:
+        prefix: /static
+    - uri:
+        exact: /login
+    - uri:
+        exact: /logout
+    - uri:
+        prefix: /api/v1/products
     route:
     - destination:
-        port:
-          number: 9080 # can be omitted if it's the only port for reviews
         host: productpage
-
+        port:
+          number: 9080
