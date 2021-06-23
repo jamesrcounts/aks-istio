@@ -2,7 +2,6 @@ apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: istio-egressgateway
-  namespace: istio-system
 spec:
   selector:
     istio: egressgateway
@@ -26,7 +25,6 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: egressgateway-for-cnn
-  namespace: istio-system
 spec:
   host: istio-egressgateway.istio-system.svc.cluster.local
   subsets:

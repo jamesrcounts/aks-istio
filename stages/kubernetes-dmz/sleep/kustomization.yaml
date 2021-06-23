@@ -1,7 +1,7 @@
+namespace: apps
 resources:
 - sleep.yaml
-- httpbin-serviceentry.yaml
-- google-serviceentry.yaml
-- cnn-serviceentry.yaml
-- cnn-gateway.yaml
-- cnn-virtualservice.yaml
+- serviceentry-cnn.yaml
+- gateway-cnn.yaml
+- virtualservice-cnn.yaml
+- networkpolicy-apps.yaml

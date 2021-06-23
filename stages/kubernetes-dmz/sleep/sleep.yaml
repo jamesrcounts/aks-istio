@@ -19,13 +19,11 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: sleep
-  namespace: apps
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: sleep
-  namespace: apps
   labels:
     app: sleep
     service: sleep
@@ -40,7 +38,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sleep
-  namespace: apps
 spec:
   replicas: 1
   selector:
@@ -67,5 +64,3 @@ spec:
           secretName: sleep-secret
           optional: true
 ---
-
-
