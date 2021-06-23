@@ -4,6 +4,7 @@ resource "kubernetes_namespace" "apps" {
 
     labels = {
       istio-injection = "enabled"
+      name            = "apps"
     }
   }
 }
