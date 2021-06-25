@@ -2,6 +2,10 @@ terraform {
   required_version = ">= 1"
 
   required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3"
+    }
     azuread = {
       source  = "hashicorp/azuread"
       version = "~> 1"
@@ -36,4 +40,8 @@ provider "azurerm" {
       roll_instances_when_required = true
     }
   }
+}
+
+provider "aws" {
+  region = "us-west-2"
 }
