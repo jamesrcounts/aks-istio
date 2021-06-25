@@ -1,0 +1,5 @@
+namespace: svcs
+resources:
+- bookinfo-deployment.yaml
+- bookinfo-service.yaml
+- bookinfo-serviceaccount.yaml

@@ -26,63 +26,63 @@
 #   kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml -l app=reviews,version=v3 # reviews-v3 Deployment
 ##################################################################################################
 
-##################################################################################################
-# Details service
-##################################################################################################
-apiVersion: v1
-kind: Service
-metadata:
-  name: details
-  namespace: apps
-  labels:
-    app: details
-    service: details
-spec:
-  ports:
-  - port: 9080
-    name: http
-  selector:
-    app: details
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  namespace: apps
-  name: bookinfo-details
-  labels:
-    account: details
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  namespace: apps
-  name: details-v1
-  labels:
-    app: details
-    version: v1
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: details
-      version: v1
-  template:
-    metadata:
-      namespace: apps
-      labels:
-        app: details
-        version: v1
-    spec:
-      serviceAccountName: bookinfo-details
-      containers:
-      - name: details
-        image: docker.io/istio/examples-bookinfo-details-v1:1.16.2
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 9080
-        securityContext:
-          runAsUser: 1000
----
+# ##################################################################################################
+# # Details service
+# ##################################################################################################
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: details
+#   namespace: apps
+#   labels:
+#     app: details
+#     service: details
+# spec:
+#   ports:
+#   - port: 9080
+#     name: http
+#   selector:
+#     app: details
+# ---
+# apiVersion: v1
+# kind: ServiceAccount
+# metadata:
+#   namespace: apps
+#   name: bookinfo-details
+#   labels:
+#     account: details
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   namespace: apps
+#   name: details-v1
+#   labels:
+#     app: details
+#     version: v1
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: details
+#       version: v1
+#   template:
+#     metadata:
+#       namespace: apps
+#       labels:
+#         app: details
+#         version: v1
+#     spec:
+#       serviceAccountName: bookinfo-details
+#       containers:
+#       - name: details
+#         image: docker.io/istio/examples-bookinfo-details-v1:1.16.2
+#         imagePullPolicy: IfNotPresent
+#         ports:
+#         - containerPort: 9080
+#         securityContext:
+#           runAsUser: 1000
+# ---
 ##################################################################################################
 # Ratings service
 ##################################################################################################
