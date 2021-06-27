@@ -3,6 +3,8 @@ data "kustomization_build" "bookinfo_details" {
 }
 
 resource "kustomization_resource" "bookinfo_details" {
-  for_each = data.kustomization_build.bookinfo_details.ids
+  depends_on = [module.istio_control_plane]
+  for_each   = data.kustomization_build.bookinfo_details.ids
+
   manifest = data.kustomization_build.bookinfo_details.manifests[each.value]
 }
