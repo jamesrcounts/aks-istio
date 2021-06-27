@@ -5,6 +5,7 @@ fmt:
 
 init:
 	terraform init --upgrade
+	terraform providers
 	
 clean:
 	terraform destroy -auto-approve
