@@ -1,4 +1,4 @@
-default: apply
+default: plan
 
 fmt:
 	terraform fmt -recursive
@@ -17,8 +17,15 @@ config:
 validate:
 	terraform validate
 
-apply: config init fmt validate
-	terraform apply
+plan: config init fmt validate
+	terraform plan -out plan.tfplan
+
+apply: 
+	terraform apply plan.tfplan
+	rm plan.tfplan
+
+graph: plan
+	terraform graph -plan=plan.tfplan > plan.dot
 
 login:
 	az login
