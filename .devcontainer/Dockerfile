@@ -1,5 +1,5 @@
-# You can pick any Debian/Ubuntu-based image. 😊
-FROM mcr.microsoft.com/vscode/devcontainers/base:0-buster
+ARG VARIANT=3.1
+FROM mcr.microsoft.com/vscode/devcontainers/dotnet:0-${VARIANT}
 
 COPY library-scripts/*.sh /tmp/library-scripts/
 
