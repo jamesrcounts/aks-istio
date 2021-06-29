@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 EXPOSE 3000
 
 FROM node:dubnium AS build
-RUN npm install -g @angular/cli@~8.3.4
+RUN npm install -g @angular/cli@~8.3.19
 
 WORKDIR /usr/src/app
 
@@ -14,7 +14,7 @@ RUN npm install
 
 # Bundle app source
 COPY . /usr/src/app
-RUN ng build 
+RUN ng build
 
 FROM base as final
 WORKDIR /usr/src/app
