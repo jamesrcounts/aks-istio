@@ -4,7 +4,7 @@ data "azurerm_key_vault" "config" {
 }
 
 data "azurerm_key_vault_secret" "config" {
-  for_each = toset(["svc-ingress-ip"])
+  for_each = toset(["svc-jamesrcounts-com"])
 
   name         = each.value
   key_vault_id = data.azurerm_key_vault.config.id
