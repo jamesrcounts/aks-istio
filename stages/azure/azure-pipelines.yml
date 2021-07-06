@@ -5,6 +5,7 @@ resources:
     - repository: templates
       type: github
       name: jamesrcounts/devops-governance
+      endpoint: 'GithHub Personal Access Token'
       
 trigger:
   batch: true
