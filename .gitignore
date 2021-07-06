@@ -32,3 +32,5 @@ override.tf.json
 # example: *tfplan*
 **/.DS_Store
 **/plan.dot
+
+azurerm.backend.tfvars
