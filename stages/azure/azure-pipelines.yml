@@ -7,7 +7,7 @@ resources:
       name: jamesrcounts/devops-governance
       endpoint: 'GithHub Personal Access Token'
       ref: refs/tags/2021.06
-      
+
 trigger:
   batch: true
   branches:
@@ -31,7 +31,7 @@ variables:
   - name: tf_in_automation
     value: true
   - name: project_folder
-    value: infrastructure
+    value: stages/azure
 
 stages:
   - stage: build
