@@ -1,12 +1,9 @@
-resource "azurerm_key_vault_secret" "config" {
-  for_each = {
-    dmz-ingress-ip = module.aks_dmz.load_balancer_ip_address
-    svc-ingress-ip = module.aks_svc.load_balancer_ip_address
-  }
+resource "azurerm_key_vault_secret" "load_balancer_ips" {
+  for_each = local.clusters
 
   key_vault_id = data.azurerm_key_vault.config.id
-  name         = each.key
-  value        = each.value
+  name         = replace(each.value, ".", "-")
+  value        = module.aks[each.key].load_balancer_ip_address
 
   tags = {
     stage  = "azure"
