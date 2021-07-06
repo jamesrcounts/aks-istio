@@ -1,12 +1,13 @@
 default: apply
 
-instance_id := becoming-chicken
+instance_id         := becoming-chicken
+backend_instance_id := ample-gannet
 
 fmt:
 	terraform fmt -recursive
 
 init:
-	terraform init --upgrade
+	terraform init --upgrade  -backend-config azurerm.backend.tfvars
 	
 clean: 
 	terraform destroy -auto-approve
@@ -16,6 +17,12 @@ connect:
 	terraform init -get=false
 	terraform -v
 	terraform providers
+
+backend_config:
+	az keyvault secret download \
+		--name azurerm-backend-tfvars \
+		--vault-name kv-$(backend_instance_id) \
+		--file azurerm.backend.tfvars
 
 config:
 	@echo 'resource_group_name="rg-$(instance_id)"' > terraform.auto.tfvars
