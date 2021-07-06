@@ -1,5 +1,8 @@
 default: plan
 
+aks_cluster_name    := aks-becoming-chicken-dmz
+resource_group_name := rg-becoming-chicken
+
 fmt:
 	terraform fmt -recursive
 
@@ -11,8 +14,8 @@ clean:
 	terraform destroy -auto-approve
 
 config:
-	@echo 'aks_cluster_name="aks-becoming-chicken-dmz"' > terraform.auto.tfvars
-	@echo 'resource_group_name="rg-becoming-chicken"' >> terraform.auto.tfvars
+	@echo 'aks_cluster_name   ="$(aks_cluster_name)"' > terraform.auto.tfvars
+	@echo 'resource_group_name="$(resource_group_name)"' >> terraform.auto.tfvars
 	
 validate:
 	terraform validate
@@ -31,3 +34,6 @@ login:
 	az login
 	az account set --subscription "Jim Counts (MSDN)"
 	az account show --output table
+
+aks-login:
+	az aks get-credentials -a -n $(aks_cluster_name) -g $(resource_group_name) --overwrite-existing
