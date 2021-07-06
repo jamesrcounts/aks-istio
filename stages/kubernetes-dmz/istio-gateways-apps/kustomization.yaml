@@ -1,0 +1,5 @@
+resources:
+- istio-configuration.yml
+- istio-egress-gateway.yml
+- istio-ingress-gateway.yml
+namespace: apps
